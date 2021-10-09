@@ -6,6 +6,8 @@ learn how to make threads. You will discover the mutex.
 
 ## TODO
 
+- Parse args
+
 - Test leaks
 - Comment all func
 - Beautify code
