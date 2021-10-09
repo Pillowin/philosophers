@@ -1,0 +1,8 @@
+**.o
+**.a
+a.out
+**.dSYM
+.DS_Store
+**.swp
+error
+philosophers
