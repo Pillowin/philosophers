@@ -1,11 +1,11 @@
 # philosophers
 
 ## Summary
-n this project, you will learn the basics of threading a process. You will
-learn how to make threads. You will discover the mutex.
+In this project, you will learn the basics of threading a process. You will learn how to make threads. You will discover the mutex.
 
 ## TODO
 
+- Error handling
 - Parse args
 - Check routine with 1 thread
 - Check routine with multiple thread
