@@ -6,12 +6,9 @@
 #    By: agautier <agautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/09 19:41:58 by agautier          #+#    #+#              #
-#    Updated: 2021/10/09 19:43:18 by agautier         ###   ########.fr        #
+#    Updated: 2021/10/13 01:50:19 by agautier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-# TODO: norme because SRC need to be explicit
-# TODO: remove debug flags
 
 NAME		=	philosophers
 SRC			=	$(wildcard $(addprefix src/, $(addsuffix .c, */*))) \
