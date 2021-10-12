@@ -7,12 +7,14 @@ In this project, you will learn the basics of threading a process. You will lear
 
 - Error handling
 - Parse args
+- Think about data structures
 - Check routine with 1 thread
 - Check routine with multiple thread
 - Add time managment in routine
 - Implement watcher
 
 - Test leaks
+- Test with thread sanitizer
 - Comment all func
 - Beautify code
 
