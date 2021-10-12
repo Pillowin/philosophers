@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_timestamp.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/09 19:38:53 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/13 01:30:38 by agautier         ###   ########.fr       */
+/*   Created: 2021/10/12 17:08:31 by agautier          #+#    #+#             */
+/*   Updated: 2021/10/13 01:33:08 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 /*
-**
+** Return current timestamp.
 */
-int	main(int argc, char **argv)
+uint64_t	get_timestamp(void)
 {
-	uint64_t	start_time;
+	struct timeval	tv;
 
-	if (argc < 5 || argc > 6)
-		return (print_error(ERR_ARGS));
-	(void)argv;
-	start_time = get_timestamp();
-	while (1)
-		fprintf(stderr, "start_time = %llu\n", get_timestamp() - start_time);
-	return (EXIT_SUCCESS);
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
