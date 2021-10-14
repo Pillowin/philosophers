@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 17:11:10 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/13 01:19:37 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/14 20:12:54 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,5 @@ number_of_philosophers time_to_die time_to_eat time_to_sleep \
 t_bool	print_error(t_errcode err)
 {
 	putendl_fd(get_errmsg(err), STDERR_FILENO);
-	return (EXIT_FAILURE);
+	return (FALSE);
 }

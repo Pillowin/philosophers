@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/09 19:38:53 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/14 20:13:32 by agautier         ###   ########.fr       */
+/*   Created: 2021/10/14 19:54:16 by agautier          #+#    #+#             */
+/*   Updated: 2021/10/14 20:12:31 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-/*
-**
-*/
-int	main(int argc, char **argv)
+t_bool	parse(int argc, char **argv)
 {
-	uint64_t	start_time;
-
-	if (!parse(argc, argv))
-		return (EXIT_FAILURE);
-	start_time = get_timestamp();
-	while (1)
-		fprintf(stderr, "start_time = %llu\n", get_timestamp() - start_time);
-	return (EXIT_SUCCESS);
+	if (argc < 5 || argc > 6)
+		return (print_error(ERR_ARGS));
+	(void)argv;
+	return (TRUE);
 }
