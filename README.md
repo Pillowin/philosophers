@@ -5,8 +5,8 @@ In this project, you will learn the basics of threading a process. You will lear
 
 ## TODO
 
-- Error handling
-- Parse args
+- ~~Error handling~~
+- ~~Parse args~~
 - Think about data structures
 - Check routine with 1 thread
 - Check routine with multiple thread
