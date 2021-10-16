@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:38:53 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/17 00:53:05 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/17 00:58:29 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,19 @@ void	*routine(void *ptr)
 */
 int	main(int argc, char **argv)
 {
-	t_philo	philo;
+	t_rules	rules;
 
-	if (!parse(argc, argv, &philo))
+	if (!parse(argc, argv, &rules))
 		return (EXIT_FAILURE);
 
-	fprintf(stderr, "philo.nb_philo = %u\n", philo.nb_philo);
-	fprintf(stderr, "philo.nb_must_eat = %u\n", philo.nb_must_eat);
-	fprintf(stderr, "philo.time_to_die = %u\n", philo.time_to_die);
-	fprintf(stderr, "philo.time_to_eat = %u\n", philo.time_to_eat);
-	fprintf(stderr, "philo.time_to_sleep = %u\n", philo.time_to_sleep);
-	fprintf(stderr, "philo.nb_must_eat = %u\n", philo.nb_must_eat);
+	fprintf(stderr, "rules.nb_philo = %u\n", rules.nb_philo);
+	fprintf(stderr, "rules.nb_must_eat = %u\n", rules.nb_must_eat);
+	fprintf(stderr, "rules.time_to_die = %u\n", rules.time_to_die);
+	fprintf(stderr, "rules.time_to_eat = %u\n", rules.time_to_eat);
+	fprintf(stderr, "rules.time_to_sleep = %u\n", rules.time_to_sleep);
+	fprintf(stderr, "rules.nb_must_eat = %u\n", rules.nb_must_eat);
 
-	philo.start_time = get_timestamp();
+	rules.start_time = get_timestamp();
 //	while (1)
 //	{
 //		fprintf(stderr, "start_time = %llu\n", get_timestamp() - philo.start_time);
