@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:39:37 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/17 00:54:59 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/17 01:54:00 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,9 @@ typedef enum e_errcode
 	ERR_ARGS_TTD,
 	ERR_ARGS_TTE,
 	ERR_ARGS_TTS,
-	ERR_ARGS_NB_EAT
+	ERR_ARGS_NB_EAT,
+	ERR_THREAD
 }	t_errcode;
-
-typedef enum e_state
-{
-	THINK = 0,
-	EAT,
-	SLEEP,
-	EXIT
-}	t_state;
 
 typedef struct s_rules
 {
@@ -55,12 +48,19 @@ typedef struct s_rules
 	uint64_t	start_time;
 }	t_rules;
 
+typedef struct s_philo
+{
+	t_rules		*rules;
+	uint8_t		index;
+	pthread_t	*thread;
+}	t_philo;
+
 uint64_t	get_timestamp(void);
 t_bool		print_error(t_errcode err);
-t_bool		parse(int argc, char **argv, t_rules *philo);
+t_bool		parse(int argc, char **argv, t_rules **philo);
 
-void	philo_think(void);
-void	philo_eat(void);
-void	philo_sleep(void);
+void	philo_think(t_philo *philo);
+void	philo_eat(t_philo *philo);
+void	philo_sleep(t_philo *philo);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 17:11:10 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/15 14:28:31 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/17 01:45:15 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ number_of_philosophers time_to_die time_to_eat time_to_sleep \
 	else if (err == ERR_ARGS_NB_EAT)
 		return ("Invalid number of times each philosophers must eat. \
 Should be between 0 and 255.");
+	else if (err == ERR_THREAD)
+		return ("Cannot create thread.");
 	return ("Unknown error.");
 }
 
