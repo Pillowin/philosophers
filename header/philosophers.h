@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:39:37 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/17 01:54:00 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/17 13:39:18 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ typedef enum e_errcode
 	ERR_ARGS_TTE,
 	ERR_ARGS_TTS,
 	ERR_ARGS_NB_EAT,
-	ERR_THREAD
+	ERR_THREAD,
+	ERR_JOIN
 }	t_errcode;
 
 typedef struct s_rules
