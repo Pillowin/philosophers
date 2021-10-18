@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:39:37 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/17 13:39:18 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/18 14:00:18 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ typedef struct s_philo
 {
 	t_rules		*rules;
 	uint8_t		index;
-	pthread_t	*thread;
+	pthread_t	thread;
 }	t_philo;
 
 uint64_t	get_timestamp(void);
 t_bool		print_error(t_errcode err);
-t_bool		parse(int argc, char **argv, t_rules **philo);
+t_bool		parse(int argc, char **argv, t_rules *philo);
 
 void	philo_think(t_philo *philo);
 void	philo_eat(t_philo *philo);

@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 19:54:16 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/17 02:22:49 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/17 16:59:45 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,16 @@ static t_bool	check_args(int argc, char **argv)
 /*
 **	Parse args and fill a philo struct.
 */
-t_bool	parse(int argc, char **argv, t_rules **rules)
+t_bool	parse(int argc, char **argv, t_rules *rules)
 {
 	if (!check_args(argc, argv))
 		return (FALSE);
-	(*rules)->nb_philo = my_atoi(argv[1]);
-	(*rules)->time_to_die = my_atoi(argv[2]);
-	(*rules)->time_to_eat = my_atoi(argv[3]);
-	(*rules)->time_to_sleep = my_atoi(argv[4]);
-	(*rules)->nb_must_eat = UINT8_MAX;
+	rules->nb_philo = my_atoi(argv[1]);
+	rules->time_to_die = my_atoi(argv[2]);
+	rules->time_to_eat = my_atoi(argv[3]);
+	rules->time_to_sleep = my_atoi(argv[4]);
+	rules->nb_must_eat = UINT8_MAX;
 	if (argc == 6)
-		(*rules)->nb_must_eat = my_atoi(argv[5]);
+		rules->nb_must_eat = my_atoi(argv[5]);
 	return (TRUE);
 }
