@@ -11,7 +11,7 @@ In this project, you will learn the basics of threading a process. You will lear
 - ~~Think about data structures~~
 - ~~Create philosophers~~
 - ~~Check routine with 1 thread~~
-- Check routine with multiple thread
+- ~~Check routine with multiple thread~~
 - Add forks
 - Add time managment in routine
 - Implement watcher

@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:38:53 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/18 14:03:03 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/18 14:07:43 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	main(int argc, char **argv)
 	if (!parse(argc, argv, &rules))
 		return (EXIT_FAILURE);
 	
-//	philo.rules = &rules;
-//	philot.rules = &rules;
+	philo.rules = &rules;
+	philot.rules = &rules;
 
 	philo.index = 1;
 	philot.index = 2;
