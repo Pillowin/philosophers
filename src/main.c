@@ -6,35 +6,57 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:38:53 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/18 14:07:43 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/19 07:41:01 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 /*
-**	
-**	TODO: check meal count
+**	Init philos.
 */
-void	*routine(void *ptr)
+static t_bool	init_philos(t_rules *rules, t_philo **philos)
 {
-	t_philo	*phi;
+	t_philo	philo;
+	uint8_t	i;
 
-	phi = (t_philo *)ptr;
-	while (TRUE)
+	*philos = (t_philo *)malloc(sizeof(t_philo) * rules->nb_philo);
+	if (!*philos)
+		return (print_error(ERR_MALLOC));
+	i = 1;
+	while (i <= rules->nb_philo)
 	{
-		fprintf(stderr, "%u\t\t", phi->index);
-		philo_think(phi);
-
-		fprintf(stderr, "%u\t\t", phi->index);
-		philo_eat(phi);
-
-		fprintf(stderr, "%u\t\t", phi->index);
-		philo_sleep(phi);
-
-		usleep(1000000);
+		philo.rules = rules;
+		philo.index = i;
+		(*philos)[i - 1] = philo;
+		i += 1;
 	}
-	return (NULL);
+	return (TRUE);
+}
+
+/*
+**	Init forks.
+*/
+static t_bool	init_forks(t_philo *philos)
+{
+	uint8_t			i;
+
+	i = 1;
+	while (i <= philos->rules->nb_philo)
+	{
+		if (i > 1)
+		{
+			philos[i - 2].lfork = &philos[i - 1].rfork;
+			fprintf(stderr, "l for %u\t%p\n", philos[i - 2].index, &philos[i - 1].rfork);
+		}
+		if (pthread_mutex_init(&philos[i - 1].rfork, NULL) != 0)
+			return (print_error(ERR_INIT));
+		fprintf(stderr, "r for %u\t%p\n", philos[i - 1].index, &philos[i - 1].rfork);
+		i += 1;
+	}
+	philos[i - 2].lfork = &philos[0].rfork;
+	fprintf(stderr, "l for %u\t%p\n", philos[i - 2].index, &philos[0].rfork);
+	return (TRUE);
 }
 
 /*
@@ -43,23 +65,29 @@ void	*routine(void *ptr)
 int	main(int argc, char **argv)
 {
 	t_rules	rules;
-	t_philo	philo;
-	t_philo	philot;
+	t_philo	*philos;
+	uint8_t i;
 
 	rules = (t_rules){0, 0, 0, 0, 0, 0};
 	if (!parse(argc, argv, &rules))
 		return (EXIT_FAILURE);
 	
-	philo.rules = &rules;
-	philot.rules = &rules;
+	if (!init_philos(&rules, &philos))
+		return (EXIT_FAILURE);
+	i = 0;
+	while (i < rules.nb_philo)
+	{
+		fprintf(stderr, "phil index = %u\n", philos[i].index);
+		i += 1;
+	}
 
-	philo.index = 1;
-	philot.index = 2;
+	if (!init_forks(philos))
+		return (EXIT_FAILURE);
 
-	if (pthread_create(&philo.thread, NULL, &routine, &philo) != 0)
-		return (EXIT_FAILURE + print_error(ERR_THREAD));
-	if (pthread_create(&philot.thread, NULL, &routine, &philot) != 0)
-		return (EXIT_FAILURE + print_error(ERR_THREAD));
+//	if (pthread_create(&philo.thread, NULL, &routine, &philo) != 0)
+//		return (EXIT_FAILURE + print_error(ERR_THREAD));
+//	if (pthread_create(&philo2.thread, NULL, &routine, &philo2) != 0)
+//		return (EXIT_FAILURE + print_error(ERR_THREAD));
 
 	rules.start_time = get_timestamp();
 	fprintf(stderr, "start_time = %llu\n", rules.start_time);
@@ -69,10 +97,13 @@ int	main(int argc, char **argv)
 		usleep(100000);
 	}
 
-	if (pthread_join(philo.thread, NULL) != 0)
-		return (EXIT_FAILURE + print_error(ERR_JOIN));
-	if (pthread_join(philot.thread, NULL) != 0)
-		return (EXIT_FAILURE + print_error(ERR_JOIN));
+//	if (pthread_join(philo.thread, NULL) != 0)
+//		return (EXIT_FAILURE + print_error(ERR_JOIN));
+//	if (pthread_join(philo2.thread, NULL) != 0)
+//		return (EXIT_FAILURE + print_error(ERR_JOIN));
+
+	free(philos);
+	philos = NULL;
 
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:39:37 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/18 14:00:18 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/19 07:29:49 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <sys/time.h>
 # include <pthread.h>
 # include <stdint.h>
+
+typedef pthread_mutex_t	t_mutex;
 
 typedef enum e_bool
 {
@@ -35,8 +37,10 @@ typedef enum e_errcode
 	ERR_ARGS_TTE,
 	ERR_ARGS_TTS,
 	ERR_ARGS_NB_EAT,
-	ERR_THREAD,
-	ERR_JOIN
+	ERR_MALLOC,
+	ERR_CREATE,
+	ERR_JOIN,
+	ERR_INIT
 }	t_errcode;
 
 typedef struct s_rules
@@ -54,6 +58,8 @@ typedef struct s_philo
 	t_rules		*rules;
 	uint8_t		index;
 	pthread_t	thread;
+	t_mutex		rfork;
+	t_mutex		*lfork;
 }	t_philo;
 
 uint64_t	get_timestamp(void);
@@ -63,5 +69,6 @@ t_bool		parse(int argc, char **argv, t_rules *philo);
 void	philo_think(t_philo *philo);
 void	philo_eat(t_philo *philo);
 void	philo_sleep(t_philo *philo);
+void	*routine(void *ptr);
 
 #endif

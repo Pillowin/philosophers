@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 17:11:10 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/17 13:32:38 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/18 15:29:23 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,14 @@ number_of_philosophers time_to_die time_to_eat time_to_sleep \
 	else if (err == ERR_ARGS_NB_EAT)
 		return ("Invalid number of times each philosophers must eat. \
 Should be between 0 and 255.");
-	else if (err == ERR_THREAD)
+	else if (err == ERR_MALLOC)
+		return ("Cannot allocate memory.");
+	else if (err == ERR_CREATE)
 		return ("Cannot create thread.");
-	else if (err == ERR_THREAD)
+	else if (err == ERR_JOIN)
 		return ("Cannot join thread.");
+	else if (err == ERR_INIT)
+		return ("Cannot init mutex.");
 	return ("Unknown error.");
 }
 

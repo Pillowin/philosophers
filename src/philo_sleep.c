@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 00:42:23 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/17 01:25:45 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/18 23:54:07 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 */
 void	philo_sleep(t_philo *philo)
 {
-	(void)philo;
-	fprintf(stderr, "philo is sleeping.\n");
+	printf("%llu\t%u is sleeping\n",
+		get_timestamp() - philo->rules->start_time, philo->index);
 }
