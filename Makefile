@@ -6,7 +6,7 @@
 #    By: agautier <agautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/09 19:41:58 by agautier          #+#    #+#              #
-#    Updated: 2021/10/19 11:04:06 by agautier         ###   ########.fr        #
+#    Updated: 2021/10/19 11:38:03 by agautier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ D			=	dep/
 SRC			=	$(wildcard $(addprefix $S, $(addsuffix .c, */*))) \
 				$(wildcard $(addprefix $S, $(addsuffix .c, *)))
 
-OBJ			=	$(SRC:$S%=$O%.o)
-DEP			=	$(SRC:$S%=$D%.d)
+OBJ			=	$(SRC:$S%.c=$O%.o)
+DEP			=	$(SRC:$S%.c=$D%.d)
 
 CC			=	gcc
 
@@ -44,7 +44,7 @@ $O:
 
 $(OBJ): | $O
 
-$(OBJ): $O%.o: $S%
+$(OBJ): $O%.o: $S%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $D:
@@ -52,7 +52,7 @@ $D:
 
 $(DEP): | $D
 
-$(DEP): $D%.d: $S%
+$(DEP): $D%.d: $S%.c
 	$(CC) $(CFLAGS) -MM -MF $@ -MT "$O$*.o $@" $<
 
 $(NAME): $(OBJ)
