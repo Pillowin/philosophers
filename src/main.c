@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:38:53 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/19 07:41:01 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/19 11:31:56 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	main(int argc, char **argv)
 	t_philo	*philos;
 	uint8_t i;
 
-	rules = (t_rules){0, 0, 0, 0, 0, 0};
+	rules = (t_rules){0, 0, 0, 0, 0, 0, {0}};
 	if (!parse(argc, argv, &rules))
 		return (EXIT_FAILURE);
 	

@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 17:11:10 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/18 15:29:23 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/19 11:19:27 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,18 @@ static void	putendl_fd(const char *str, int fd)
 {
 	write(fd, str, ft_strlen(str));
 	write(fd, "\n", 1);
+}
+
+/*
+**	Continuation of the function bellow.
+*/
+static const char	*get_errmsg_2(t_errcode err)
+{
+	if (err == ERR_LOCK)
+		return ("Cannot lock mutex.");
+	else if (err == ERR_UNLOCK)
+		return ("Cannot unlock mutex.");
+	return ("Unknown error.");
 }
 
 /*
@@ -62,7 +74,7 @@ Should be between 0 and 255.");
 		return ("Cannot join thread.");
 	else if (err == ERR_INIT)
 		return ("Cannot init mutex.");
-	return ("Unknown error.");
+	return (get_errmsg_2(err));
 }
 
 /*

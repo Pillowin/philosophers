@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:39:37 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/19 07:29:49 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/19 11:21:07 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ typedef enum e_errcode
 	ERR_MALLOC,
 	ERR_CREATE,
 	ERR_JOIN,
-	ERR_INIT
+	ERR_INIT,
+	ERR_LOCK,
+	ERR_UNLOCK
 }	t_errcode;
 
 typedef struct s_rules
@@ -51,6 +53,7 @@ typedef struct s_rules
 	uint16_t	time_to_sleep;
 	uint8_t		nb_must_eat;
 	uint64_t	start_time;
+	t_mutex		print;
 }	t_rules;
 
 typedef struct s_philo
@@ -66,6 +69,7 @@ uint64_t	get_timestamp(void);
 t_bool		print_error(t_errcode err);
 t_bool		parse(int argc, char **argv, t_rules *philo);
 
+t_bool	print(t_mutex *print, uint64_t timestamp, uint8_t index, char *action);
 void	philo_think(t_philo *philo);
 void	philo_eat(t_philo *philo);
 void	philo_sleep(t_philo *philo);
