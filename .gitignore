@@ -1,8 +1,13 @@
 **.o
 **.a
-a.out
-**.dSYM
-.DS_Store
+**.d
 **.swp
+**.dSYM
+
+obj/
+dep/
+
+a.out
+.DS_Store
 error
 philosophers

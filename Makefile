@@ -6,33 +6,67 @@
 #    By: agautier <agautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/09 19:41:58 by agautier          #+#    #+#              #
-#    Updated: 2021/10/13 01:50:19 by agautier         ###   ########.fr        #
+#    Updated: 2021/10/19 11:04:06 by agautier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	philosophers
-SRC			=	$(wildcard $(addprefix src/, $(addsuffix .c, */*))) \
-				$(wildcard $(addprefix src/, $(addsuffix .c, *)))
-OBJ			=	$(SRC:.c=.o)
+
+S			=	src/
+O			=	obj/
+I			=	header/
+D			=	dep/
+
+SRC			=	$(wildcard $(addprefix $S, $(addsuffix .c, */*))) \
+				$(wildcard $(addprefix $S, $(addsuffix .c, *)))
+
+OBJ			=	$(SRC:$S%=$O%.o)
+DEP			=	$(SRC:$S%=$D%.d)
+
 CC			=	gcc
-HEADER		=	-Iheader
-CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=address
 
-all: $(NAME)
+CFLAGS		+=	-I$I
+CFLAGS		+=	-Wall -Wextra -Werror
+CFLAGS		+=	-g3 -fsanitize=address
+CFLAGS		+=	-pthread
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(HEADER) $(LIB) -o $@ $(OBJ) -pthread
+LDFLAGS		+=	-g3 -fsanitize=address
 
-%.o: %.c
-	$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
-
-clean:
-	rm -f $(OBJ)
-
-fclean: clean
-	rm -f $(NAME)
-
-re: fclean all
+RM			=	/bin/rm -f
+RMDIR		=	/bin/rmdir -p
 
 .PHONY:	all clean fclean re
 
+all: $(NAME)
+
+$O:
+	@mkdir -p $@
+
+$(OBJ): | $O
+
+$(OBJ): $O%.o: $S%
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$D:
+	@mkdir -p $@
+
+$(DEP): | $D
+
+$(DEP): $D%.d: $S%
+	$(CC) $(CFLAGS) -MM -MF $@ -MT "$O$*.o $@" $<
+
+$(NAME): $(OBJ)
+	$(CC) $(LDFLAGS) $^ -o $@
+
+clean:
+	$(RM) $(wildcard $(OBJ))
+	$(RMDIR) $O
+	$(RM) $(wildcard $(DEP))
+	$(RMDIR) $D
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
+
+-include $(DEP)
