@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 17:11:10 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/19 11:19:27 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/21 16:42:58 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static const char	*get_errmsg_2(t_errcode err)
 		return ("Cannot lock mutex.");
 	else if (err == ERR_UNLOCK)
 		return ("Cannot unlock mutex.");
+	else if (err == ERR_DESTROY)
+		return ("Cannot destroy mutex.");
 	return ("Unknown error.");
 }
 

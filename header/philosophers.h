@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:39:37 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/19 11:21:07 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/21 16:49:04 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ typedef enum e_errcode
 	ERR_JOIN,
 	ERR_INIT,
 	ERR_LOCK,
-	ERR_UNLOCK
+	ERR_UNLOCK,
+	ERR_DESTROY
 }	t_errcode;
 
 typedef struct s_rules
@@ -69,10 +70,10 @@ uint64_t	get_timestamp(void);
 t_bool		print_error(t_errcode err);
 t_bool		parse(int argc, char **argv, t_rules *philo);
 
-t_bool	print(t_mutex *print, uint64_t timestamp, uint8_t index, char *action);
-void	philo_think(t_philo *philo);
-void	philo_eat(t_philo *philo);
-void	philo_sleep(t_philo *philo);
-void	*routine(void *ptr);
+t_bool		print(t_rules *rules, uint8_t index, char *action);
+t_bool		philo_think(t_philo *philo);
+t_bool		philo_eat(t_philo *philo);
+t_bool		philo_sleep(t_philo *philo);
+void		*routine(void *ptr);
 
 #endif
