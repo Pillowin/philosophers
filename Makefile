@@ -6,7 +6,7 @@
 #    By: agautier <agautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/09 19:41:58 by agautier          #+#    #+#              #
-#    Updated: 2021/10/19 11:38:03 by agautier         ###   ########.fr        #
+#    Updated: 2021/10/21 15:45:59 by agautier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ CFLAGS		+=	-pthread
 LDFLAGS		+=	-g3 -fsanitize=address
 
 RM			=	/bin/rm -f
-RMDIR		=	/bin/rmdir -p
+RMDIR		=	/bin/rm -Rf
 
 .PHONY:	all clean fclean re
 
