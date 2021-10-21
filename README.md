@@ -15,8 +15,8 @@ In this project, you will learn the basics of threading a process. You will lear
 - ~~Add forks~
 - ~~protect printing~~
 - ~~Add time managment in routine~~
-- Synchronise thread
-- Desynchronize philosophers
+- ~~Synchronise thread~~
+- ~~Desynchronize philosophers~~
 - Implement watcher
 - Use optionnal arg to stop simulation
 - Custom implementation of usleep func

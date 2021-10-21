@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:38:53 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/21 16:47:36 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/21 18:28:34 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,26 +65,24 @@ int	main(int argc, char **argv)
 	t_philo	*philos;
 	uint8_t	i;
 
-	rules = (t_rules){0, 0, 0, 0, 0, 0, {0}};
+	rules = (t_rules){0, 0, 0, 0, 0, 0, 0, {0}};
 	if (!parse(argc, argv, &rules))
 		return (EXIT_FAILURE);
 	if (!init_philos(&rules, &philos))
 		return (EXIT_FAILURE);
 	if (!init_forks(philos))
 		return (EXIT_FAILURE);
-
-	rules.start_time = get_timestamp();
 	if (pthread_mutex_init(&rules.print, NULL) != 0)
 		return (print_error(ERR_INIT));
 
-	fprintf(stderr, "launching thread...\n");
 	i = 0;
 	while (i < rules.nb_philo)
 	{
+		if (i % 2)
+			usleep(100);
 		if (pthread_create(&((philos[i]).thread), NULL, &routine,
 				&(philos[i])) != 0)
 			return (EXIT_FAILURE + print_error(ERR_CREATE));
-		fprintf(stderr, "philo %u created successfully\n", i);
 		i += 1;
 	}
 

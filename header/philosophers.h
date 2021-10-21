@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:39:37 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/21 16:49:04 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/21 18:09:39 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_rules
 	uint16_t	time_to_sleep;
 	uint8_t		nb_must_eat;
 	uint64_t	start_time;
+	uint8_t		ready;
 	t_mutex		print;
 }	t_rules;
 
