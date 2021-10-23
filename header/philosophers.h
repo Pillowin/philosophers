@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:39:37 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/21 18:09:39 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/23 23:42:08 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct s_rules
 	uint16_t	time_to_eat;
 	uint16_t	time_to_sleep;
 	uint8_t		nb_must_eat;
-	uint64_t	start_time;
 	uint8_t		ready;
 	t_mutex		print;
 }	t_rules;
@@ -65,6 +64,8 @@ typedef struct s_philo
 	pthread_t	thread;
 	t_mutex		rfork;
 	t_mutex		*lfork;
+	uint64_t	time_last_eat;
+	t_mutex		mut;
 }	t_philo;
 
 uint64_t	get_timestamp(void);
@@ -76,5 +77,6 @@ t_bool		philo_think(t_philo *philo);
 t_bool		philo_eat(t_philo *philo);
 t_bool		philo_sleep(t_philo *philo);
 void		*routine(void *ptr);
+t_bool		watcher(t_philo *philos);
 
 #endif

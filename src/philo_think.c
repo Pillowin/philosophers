@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 00:41:32 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/21 16:22:16 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/23 23:12:27 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@
 */
 t_bool	philo_think(t_philo *philo)
 {
-	print(philo->rules, philo->index, "is thinking");
+	if (!print(philo->rules, philo->index, "is thinking"))
+		return (FALSE);
 	if (pthread_mutex_lock(philo->lfork) != 0)
 		return (print_error(ERR_LOCK));
-	print(philo->rules, philo->index, "has taken a fork");
+	if (!print(philo->rules, philo->index, "has taken a fork"))
+		return (FALSE);
 	if (pthread_mutex_lock(&philo->rfork) != 0)
 		return (print_error(ERR_LOCK));
-	print(philo->rules, philo->index, "has taken a fork");
+	if (!print(philo->rules, philo->index, "has taken a fork"))
+		return (FALSE);
 	return (TRUE);
 }
