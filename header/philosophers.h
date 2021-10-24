@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:39:37 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/24 02:19:02 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/24 02:52:28 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,7 @@ void		*routine(void *ptr);
 t_bool		watcher(t_philo *philos);
 t_bool		stop_running(t_rules *rules);
 t_bool		get_running(t_rules *rules);
+
+void		my_usleep(useconds_t us);
 
 #endif

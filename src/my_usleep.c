@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_sleep.c                                      :+:      :+:    :+:   */
+/*   my_usleep.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/17 00:42:23 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/24 02:52:47 by agautier         ###   ########.fr       */
+/*   Created: 2021/10/24 02:37:58 by agautier          #+#    #+#             */
+/*   Updated: 2021/10/24 02:54:59 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 /*
-**	Print sleeping message and sleep time_to_sleep ms.
+**	Custom implementation of usleep.
 */
-t_bool	philo_sleep(t_philo *philo)
+void	my_usleep(useconds_t us)
 {
-	if (!print(philo->rules, philo->index, "is sleeping"))
-		return (FALSE);
-	my_usleep(philo->rules->time_to_sleep * 1000);
-	return (TRUE);
+	uint64_t	now;
+
+	now = get_timestamp();
+	while (get_timestamp() < now + us / 1000)
+		usleep(10);
 }
