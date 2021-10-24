@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/14 19:54:16 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/21 16:12:45 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/24 00:26:44 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,18 @@ static t_bool	is_valid_nbr(char *str, uint16_t max)
 /*
 **	Return FALSE if an arg is not valid.
 */
-static t_bool	check_args(int argc, char **argv)
+static t_bool	check_args(t_rules *rules, int argc, char **argv)
 {
 	uint8_t	i;
 
 	if (argc < 5 || argc > 6)
-		return (print_error(ERR_ARGS_NB));
+		return (print_error(rules, ERR_ARGS_NB));
 	i = 1;
 	while (i < argc)
 	{
 		if (((i == 1 || i == 5) && !is_valid_nbr(argv[i], UINT8_MAX))
 			|| !is_valid_nbr(argv[i], UINT16_MAX))
-			return (print_error(ERR_ARGS_NB + i));
+			return (print_error(rules, ERR_ARGS_NB + i));
 		i += 1;
 	}
 	return (TRUE);
@@ -76,7 +76,7 @@ static t_bool	check_args(int argc, char **argv)
 */
 t_bool	parse(int argc, char **argv, t_rules *rules)
 {
-	if (!check_args(argc, argv))
+	if (!check_args(rules, argc, argv))
 		return (FALSE);
 	rules->nb_philo = my_atoi(argv[1]);
 	rules->time_to_die = my_atoi(argv[2]);

@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:39:37 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/23 23:42:08 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/24 02:19:02 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_rules
 	uint8_t		nb_must_eat;
 	uint8_t		ready;
 	t_mutex		print;
+	t_mutex		mut;
+	t_bool		running;
 }	t_rules;
 
 typedef struct s_philo
@@ -69,7 +71,7 @@ typedef struct s_philo
 }	t_philo;
 
 uint64_t	get_timestamp(void);
-t_bool		print_error(t_errcode err);
+t_bool		print_error(t_rules *rules, t_errcode err);
 t_bool		parse(int argc, char **argv, t_rules *philo);
 
 t_bool		print(t_rules *rules, uint8_t index, char *action);
@@ -78,5 +80,7 @@ t_bool		philo_eat(t_philo *philo);
 t_bool		philo_sleep(t_philo *philo);
 void		*routine(void *ptr);
 t_bool		watcher(t_philo *philos);
+t_bool		stop_running(t_rules *rules);
+t_bool		get_running(t_rules *rules);
 
 #endif

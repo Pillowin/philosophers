@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 17:11:10 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/21 16:42:58 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/24 02:22:08 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,10 @@ Should be between 0 and 255.");
 /*
 **	Print str on STDERR_FILENO and return FALSE.
 */
-t_bool	print_error(t_errcode err)
+t_bool	print_error(t_rules *rules, t_errcode err)
 {
+	if (!stop_running(rules))
+		putendl_fd(get_errmsg(err), STDERR_FILENO);
 	putendl_fd(get_errmsg(err), STDERR_FILENO);
 	return (FALSE);
 }

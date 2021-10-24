@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 14:39:20 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/23 23:40:59 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/24 02:28:42 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@
 static t_bool	wait_sync(t_rules *rules)
 {
 	if (pthread_mutex_lock(&rules->print) != 0)
-		return (print_error(ERR_LOCK));
+		return (print_error(rules, ERR_LOCK));
 	rules->ready += 1;
 	if (pthread_mutex_unlock(&rules->print) != 0)
-		return (print_error(ERR_UNLOCK));
+		return (print_error(rules, ERR_UNLOCK));
 	while (TRUE)
 	{
 		if (pthread_mutex_lock(&rules->print) != 0)
-			return (print_error(ERR_LOCK));
+			return (print_error(rules, ERR_LOCK));
 		if (rules->ready == rules->nb_philo)
 			break ;
 		if (pthread_mutex_unlock(&rules->print) != 0)
-			return (print_error(ERR_UNLOCK));
+			return (print_error(rules, ERR_UNLOCK));
 	}
 	if (pthread_mutex_unlock(&rules->print) != 0)
-		return (print_error(ERR_UNLOCK));
+		return (print_error(rules, ERR_UNLOCK));
 	return (TRUE);
 }
 
@@ -48,9 +48,13 @@ void	*routine(void *ptr)
 	philo = (t_philo *)ptr;
 	if (!wait_sync(philo->rules))
 		return (NULL);
-	while (TRUE)
+	while (get_running(philo->rules))
 	{
-		if (!philo_think(philo) || !philo_eat(philo) || !philo_sleep(philo))
+		if (!get_running(philo->rules) || !philo_think(philo))
+			return (NULL);
+		if (!get_running(philo->rules) || !philo_eat(philo))
+			return (NULL);
+		if (!get_running(philo->rules) || !philo_sleep(philo))
 			return (NULL);
 	}
 	return (NULL);
