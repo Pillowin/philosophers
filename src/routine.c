@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 14:39:20 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/24 02:28:42 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/26 15:25:20 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,7 @@ void	*routine(void *ptr)
 	if (!wait_sync(philo->rules))
 		return (NULL);
 	while (get_running(philo->rules))
-	{
-		if (!get_running(philo->rules) || !philo_think(philo))
+		if (!philo_think(philo) || !philo_eat(philo) || !philo_sleep(philo))
 			return (NULL);
-		if (!get_running(philo->rules) || !philo_eat(philo))
-			return (NULL);
-		if (!get_running(philo->rules) || !philo_sleep(philo))
-			return (NULL);
-	}
 	return (NULL);
 }

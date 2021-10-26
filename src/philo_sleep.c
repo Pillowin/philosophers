@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 00:42:23 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/24 02:52:47 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/26 15:15:30 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 */
 t_bool	philo_sleep(t_philo *philo)
 {
-	if (!print(philo->rules, philo->index, "is sleeping"))
+	if (!get_running(philo->rules)
+		|| !print(philo->rules, philo->index, "is sleeping"))
 		return (FALSE);
 	my_usleep(philo->rules->time_to_sleep * 1000);
 	return (TRUE);
