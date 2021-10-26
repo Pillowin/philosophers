@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:38:53 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/24 02:58:14 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/26 16:15:59 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,7 @@ int	main(int argc, char **argv)
 	}
 
 	while (get_running(&rules) && watcher(philos) == TRUE)
-	{
-//		fprintf(stderr, "running == TRUE ? %d\n", rules.running);
-		usleep(500);
-	}
+		usleep(100);
 
 	i = 0;
 	while (i < rules.nb_philo)

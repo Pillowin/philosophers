@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 17:08:57 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/24 02:30:29 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/26 16:16:28 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ t_bool	get_running(t_rules *rules)
 	if (pthread_mutex_lock(&rules->mut) != 0)
 		return (print_error(rules, ERR_LOCK));
 	if (rules->running == FALSE)
+	{
+		if (pthread_mutex_unlock(&rules->mut) != 0)
+			return (print_error(rules, ERR_UNLOCK));
 		return (FALSE);
+	}
 	if (pthread_mutex_unlock(&rules->mut) != 0)
 		return (print_error(rules, ERR_UNLOCK));
 	return (TRUE);
@@ -41,8 +45,6 @@ t_bool	stop_running(t_rules *rules)
 
 /*
 **	Checks if a philosoper is dead or if an error occured.
-**	TODO: if time_last_eat + time_to_die >= curr_time => dead
-**	TODO: block any printing after 'died' message
 */
 t_bool	watcher(t_philo *philos)
 {
@@ -59,7 +61,7 @@ t_bool	watcher(t_philo *philos)
 			if (pthread_mutex_unlock(&(philos[i]).mut) != 0)
 				return (print_error(philos->rules, ERR_UNLOCK));
 			print(philos[i].rules, philos[i].index, "died");
-			fprintf(stderr, "index = %u\nlast eat = %llu\nttd = %hu\ncurr time = %llu\n\n", philos[i].index, philos[i].time_last_eat, (*philos).rules->time_to_die, get_timestamp());
+			fprintf(stderr, "index = %u\nlast eat = %llu\nttd = %hu\ncurr time = %llu\n", philos[i].index, philos[i].time_last_eat, (*philos).rules->time_to_die, get_timestamp());
 			stop_running(philos->rules);
 			return (FALSE);
 		}

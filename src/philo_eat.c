@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 00:42:03 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/26 15:17:39 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/26 15:50:18 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 */
 t_bool	philo_eat(t_philo *philo)
 {
-	if (!get_running(philo->rules)
-		|| !print(philo->rules, philo->index, "is eating"))
+	if (!print(philo->rules, philo->index, "is eating"))
 		return (FALSE);
 	if (pthread_mutex_lock(&philo->mut) != 0)
 		return (print_error(philo->rules, ERR_LOCK));
@@ -30,5 +29,7 @@ t_bool	philo_eat(t_philo *philo)
 		return (print_error(philo->rules, ERR_UNLOCK));
 	if (pthread_mutex_unlock(&philo->rfork) != 0)
 		return (print_error(philo->rules, ERR_UNLOCK));
+	if (!get_running(philo->rules))
+		return (FALSE);
 	return (TRUE);
 }
