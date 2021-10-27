@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:38:53 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/26 16:15:59 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/27 19:23:28 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ static t_bool	init_forks(t_philo *philos)
 	while (i <= philos->rules->nb_philo)
 	{
 		if (i > 1)
-		{
 			philos[i - 2].lfork = &philos[i - 1].rfork;
-		}
 		if (pthread_mutex_init(&philos[i - 1].rfork, NULL) != 0)
 			return (print_error(philos->rules, ERR_INIT));
 		if (pthread_mutex_init(&philos[i - 1].mut, NULL) != 0)
@@ -82,8 +80,6 @@ int	main(int argc, char **argv)
 	i = 0;
 	while (i < rules.nb_philo)
 	{
-		if (i % 2)
-			usleep(100);
 		if (pthread_create(&((philos[i]).thread), NULL, &routine,
 				&(philos[i])) != 0)
 			return (EXIT_FAILURE + print_error(philos->rules, ERR_CREATE));	// TODO: free and destroy 
@@ -98,14 +94,21 @@ int	main(int argc, char **argv)
 	{
 		if (pthread_join(philos[i].thread, NULL) != 0)
 			return (EXIT_FAILURE + print_error(philos->rules, ERR_JOIN));
-		if (pthread_mutex_destroy(&philos[i].rfork) != 0)
+		i += 1;
+	}
+	i = 0;
+	while (i < rules.nb_philo)
+	{
+		if (pthread_mutex_destroy(&(philos[i].rfork)) != 0)
 			return (EXIT_FAILURE + print_error(philos->rules, ERR_DESTROY));
-		if (pthread_mutex_destroy(&philos[i].mut) != 0)
+		if (pthread_mutex_destroy(&(philos[i].mut)) != 0)
 			return (EXIT_FAILURE + print_error(philos->rules, ERR_DESTROY));
 		i += 1;
 	}
+	fprintf(stderr, "destroying print\n");
 	if (pthread_mutex_destroy(&rules.print) != 0)
 		return (EXIT_FAILURE + print_error(philos->rules, ERR_DESTROY));
+	fprintf(stderr, "destroying mut\n");
 	if (pthread_mutex_destroy(&rules.mut) != 0)
 		return (EXIT_FAILURE + print_error(philos->rules, ERR_DESTROY));
 

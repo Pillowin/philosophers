@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 17:08:57 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/26 16:16:28 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/27 19:20:18 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_bool	watcher(t_philo *philos)
 		if (pthread_mutex_lock(&(philos[i]).mut) != 0)
 			return (print_error(philos->rules, ERR_LOCK));
 		if (philos[i].time_last_eat + philos->rules->time_to_die
-			<= get_timestamp() && philos[i].time_last_eat)
+			<= get_timestamp())
 		{
 			if (pthread_mutex_unlock(&(philos[i]).mut) != 0)
 				return (print_error(philos->rules, ERR_UNLOCK));
