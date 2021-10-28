@@ -21,7 +21,6 @@ In this project, you will learn the basics of threading a process. You will lear
 - Use optionnal arg to stop simulation
 - ~~Custom implementation of usleep func~~
 
-- fix ./philosophers 4 310 2000000000000000 200 5
 - Test leaks
 - Test with thread sanitizer
 - Comment all func
