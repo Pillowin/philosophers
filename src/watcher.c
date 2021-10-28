@@ -91,8 +91,6 @@ static t_bool	check_died(t_philo *philos)
 			if (pthread_mutex_unlock(&(philos[i]).mut) != 0)
 				return (print_error(philos->rules, ERR_UNLOCK));
 			print(philos[i].rules, philos[i].index, "died");
-			// if (pthread_mutex_unlock(&(philos[i]).rfork) != 0)
-			// 	return (print_error(philos->rules, ERR_UNLOCK));
 			stop_running(philos->rules);
 			return (FALSE);
 		}
