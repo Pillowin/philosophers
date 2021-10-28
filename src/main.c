@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:38:53 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/28 02:39:23 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/28 13:07:46 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static t_bool	init_philos(t_rules *rules, t_philo **philos)
 		philo.rules = rules;
 		philo.index = i;
 		(*philos)[i - 1] = philo;
+		philo.nb_meal = 0;
 		i += 1;
 	}
 	return (TRUE);

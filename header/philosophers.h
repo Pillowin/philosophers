@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:39:37 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/27 19:02:49 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/28 12:34:26 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_philo
 	t_mutex		rfork;
 	t_mutex		*lfork;
 	uint64_t	time_last_eat;
+	uint8_t		nb_meal;
 	t_mutex		mut;
 }	t_philo;
 

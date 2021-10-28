@@ -18,8 +18,11 @@ In this project, you will learn the basics of threading a process. You will lear
 - ~~Synchronise thread~~
 - ~~Desynchronize philosophers~~
 - ~~Implement watcher~~
-- Use optionnal arg to stop simulation
+- ~~Use optionnal arg to stop simulation~~
 - ~~Custom implementation of usleep func~~
+
+- Specific case with only one philo
+- Check that all exit free, join and destroy
 
 - Test leaks
 - Test with thread sanitizer
