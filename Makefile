@@ -6,7 +6,7 @@
 #    By: agautier <agautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/09 19:41:58 by agautier          #+#    #+#              #
-#    Updated: 2021/10/28 16:07:57 by agautier         ###   ########.fr        #
+#    Updated: 2021/10/28 17:14:50 by agautier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,19 @@ O			=	obj/
 I			=	header/
 D			=	dep/
 
-SRC			=	$(wildcard $(addprefix $S, $(addsuffix .c, */*))) \
-				$(wildcard $(addprefix $S, $(addsuffix .c, *)))
+SRC			=	src/init.c \
+				src/main.c \
+				src/error.c \
+				src/parse.c \
+				src/print.c \
+				src/destroy.c \
+				src/routine.c \
+				src/watcher.c \
+				src/my_usleep.c \
+				src/philo_eat.c \
+				src/philo_think.c \
+				src/philo_sleep.c \
+				src/get_timestamp.c
 
 OBJ			=	$(SRC:$S%.c=$O%.o)
 DEP			=	$(SRC:$S%.c=$D%.d)
@@ -27,10 +38,7 @@ CC			=	gcc
 
 CFLAGS		+=	-I$I
 CFLAGS		+=	-Wall -Wextra -Werror
-CFLAGS		+=	-g3 -fsanitize=thread
 CFLAGS		+=	-pthread
-
-LDFLAGS		+=	-g3 -fsanitize=thread
 
 RM			=	/bin/rm -f
 RMDIR		=	/bin/rm -Rf
