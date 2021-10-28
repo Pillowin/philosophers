@@ -27,5 +27,5 @@ In this project, you will learn the basics of threading a process. You will lear
 - ~~Comment all func~~
 - ~~Beautify code~~
 
-- Explicit files in Makefile
-- Remove debug flags in Makefile
+- ~~Explicit files in Makefile~~
+- ~~Remove debug flags in Makefile~~
