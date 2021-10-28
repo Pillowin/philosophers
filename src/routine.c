@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 14:39:20 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/27 19:25:13 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/28 16:12:48 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ static t_bool	wait_sync(t_rules *rules)
 }
 
 /*
-**	
-**	TODO: check meal count
-**	TODO: check return with watcher
+**	Apply actions for each philosopher.
 */
 void	*routine(void *ptr)
 {

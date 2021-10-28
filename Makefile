@@ -6,11 +6,11 @@
 #    By: agautier <agautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/09 19:41:58 by agautier          #+#    #+#              #
-#    Updated: 2021/10/21 15:45:59 by agautier         ###   ########.fr        #
+#    Updated: 2021/10/28 16:07:57 by agautier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	philosophers
+NAME		=	philo
 
 S			=	src/
 O			=	obj/
@@ -27,10 +27,10 @@ CC			=	gcc
 
 CFLAGS		+=	-I$I
 CFLAGS		+=	-Wall -Wextra -Werror
-CFLAGS		+=	-g3 -fsanitize=address
+CFLAGS		+=	-g3 -fsanitize=thread
 CFLAGS		+=	-pthread
 
-LDFLAGS		+=	-g3 -fsanitize=address
+LDFLAGS		+=	-g3 -fsanitize=thread
 
 RM			=	/bin/rm -f
 RMDIR		=	/bin/rm -Rf

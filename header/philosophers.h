@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:39:37 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/28 12:34:26 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/28 14:34:16 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@ typedef enum e_bool
 	TRUE
 }	t_bool;
 
+typedef enum e_destroy
+{
+	NONE = 0,
+	PHILOS,
+	FORKS,
+	MUTEXES,
+	ALL
+}	t_destroy;
+
 typedef enum e_errcode
 {
 	ERR_ARGS_NB = 0,
@@ -37,6 +46,7 @@ typedef enum e_errcode
 	ERR_ARGS_TTE,
 	ERR_ARGS_TTS,
 	ERR_ARGS_NB_EAT,
+	ERR_ARGS_NB_EAT_GT,
 	ERR_MALLOC,
 	ERR_CREATE,
 	ERR_JOIN,
@@ -71,6 +81,10 @@ typedef struct s_philo
 	t_mutex		mut;
 }	t_philo;
 
+t_bool		init_philos(t_rules *rules, t_philo **philos);
+t_bool		init_forks(t_philo *philos);
+t_bool		init_mutex(t_philo *philos);
+t_bool		destroy(t_philo *philos, t_destroy destroy);
 uint64_t	get_timestamp(void);
 t_bool		print_error(t_rules *rules, t_errcode err);
 t_bool		parse(int argc, char **argv, t_rules *philo);

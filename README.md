@@ -20,14 +20,12 @@ In this project, you will learn the basics of threading a process. You will lear
 - ~~Implement watcher~~
 - ~~Use optionnal arg to stop simulation~~
 - ~~Custom implementation of usleep func~~
+- ~~Check that all exit free, join and destroy~~
 
-- Specific case with only one philo
-- Check that all exit free, join and destroy
-
-- Test leaks
-- Test with thread sanitizer
-- Comment all func
-- Beautify code
+- ~~Test leaks~~
+- ~~Test with thread sanitizer~~
+- ~~Comment all func~~
+- ~~Beautify code~~
 
 - Explicit files in Makefile
 - Remove debug flags in Makefile
