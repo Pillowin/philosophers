@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 19:39:37 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/28 14:34:16 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/28 17:46:28 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ typedef enum e_bool
 
 typedef enum e_destroy
 {
-	NONE = 0,
-	PHILOS,
-	FORKS,
+	ALL = 0,
 	MUTEXES,
-	ALL
+	FORKS,
+	PHILOS,
+	NONE
 }	t_destroy;
 
 typedef enum e_errcode

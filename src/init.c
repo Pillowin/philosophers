@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 13:42:23 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/28 14:06:36 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/28 18:25:32 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_bool	init_philos(t_rules *rules, t_philo **philos)
 	i = 1;
 	while (i <= rules->nb_philo)
 	{
-		(*philos)[i - 1] = (t_philo){rules, i, NULL, {0}, NULL, 0, 0, {0}};
+		(*philos)[i - 1] = (t_philo){rules, i, 0, {}, 0, 0, 0, {}};
 		i += 1;
 	}
 	return (TRUE);

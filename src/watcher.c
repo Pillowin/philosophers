@@ -6,7 +6,7 @@
 /*   By: agautier <agautier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 17:08:57 by agautier          #+#    #+#             */
-/*   Updated: 2021/10/28 13:35:15 by agautier         ###   ########.fr       */
+/*   Updated: 2021/10/28 18:25:05 by agautier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ static t_bool	check_died(t_philo *philos)
 			if (pthread_mutex_unlock(&(philos[i]).mut) != 0)
 				return (print_error(philos->rules, ERR_UNLOCK));
 			print(philos[i].rules, philos[i].index, "died");
-			if (pthread_mutex_unlock(&(philos[i]).rfork) != 0)
-				return (print_error(philos->rules, ERR_UNLOCK));
+			// if (pthread_mutex_unlock(&(philos[i]).rfork) != 0)
+			// 	return (print_error(philos->rules, ERR_UNLOCK));
 			stop_running(philos->rules);
 			return (FALSE);
 		}

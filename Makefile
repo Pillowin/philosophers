@@ -6,7 +6,7 @@
 #    By: agautier <agautier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/09 19:41:58 by agautier          #+#    #+#              #
-#    Updated: 2021/10/28 17:14:50 by agautier         ###   ########.fr        #
+#    Updated: 2021/10/28 17:30:45 by agautier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,8 @@ CC			=	gcc
 CFLAGS		+=	-I$I
 CFLAGS		+=	-Wall -Wextra -Werror
 CFLAGS		+=	-pthread
+
+LDFLAGS		+=	-pthread
 
 RM			=	/bin/rm -f
 RMDIR		=	/bin/rm -Rf
